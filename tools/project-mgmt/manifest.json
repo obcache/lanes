@@ -1,0 +1,201 @@
+{
+  "generator": "reponator",
+  "generatorVersion": "0.2.0",
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T14:51:36.019Z",
+  "project": {
+    "name": "lanes",
+    "description": "highly customizable lane-based rhythm game",
+    "private": true
+  },
+  "foundation": {
+    "stack": "electron",
+    "platform": "windows",
+    "theme": "contrast",
+    "density": "touch",
+    "layout": "workflow",
+    "primarySurface": "mixed",
+    "overlays": "inline",
+    "chrome": "custom",
+    "scrollbars": "themed",
+    "tray": "none",
+    "branding": "generate",
+    "iconStates": "single",
+    "visualStyle": "expressive",
+    "settings": "persisted",
+    "storage": "mysql",
+    "users": "multi",
+    "authentication": "oidc",
+    "authorization": "hybrid",
+    "adminSetup": "external",
+    "adminUsername": "admin",
+    "deployment": "desktop",
+    "packaging": "inno",
+    "interchange": "json",
+    "connectivity": "online",
+    "testing": "standard",
+    "notes": "MIDI support will be needed"
+  },
+  "foundationPath": "docs/PROJECT_FOUNDATION.md",
+  "artifactBoundary": "dist/",
+  "migrationPolicy": "Explicit, versioned and validated when persistence is implemented.",
+  "layout": {
+    "docs": [
+      "AGENTS.md",
+      "docs/dev-ledger.md",
+      "docs/developer/build.md",
+      "docs/developer/deployment.md",
+      "docs/developer/engineering-geometry.md",
+      "docs/developer/handoff.md",
+      "docs/developer/project-gravity.md",
+      "docs/developer/testing.md",
+      "docs/developer/versioning.md",
+      "docs/developer/workflow.md",
+      "docs/manual-qa.md",
+      "docs/planning/To-do.md",
+      "docs/PROJECT_FOUNDATION.md",
+      "docs/user/UserGuide.md",
+      "README.md",
+      "tools/project-mgmt/README.md"
+    ],
+    "tools": [
+      "tools/project-mgmt/commit-release.js",
+      "tools/project-mgmt/foundation.json",
+      "tools/project-mgmt/handoff.js",
+      "tools/project-mgmt/ledger.js",
+      "tools/project-mgmt/README.md",
+      "tools/project-mgmt/stack-command.js",
+      "tools/project-mgmt/todo.js",
+      "tools/project-mgmt/version-bump.js",
+      "tools/project-mgmt/version-show.js",
+      "tools/project-mgmt/version-sync.js"
+    ]
+  },
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "37da7f6906fbddb795013d7872ece2f9865507e5b1cd680b860afc4e716acc7f"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "b4cd4356ff0c35911ab1381e8677ce6cedda261083e206b48658dc061204c796"
+    },
+    {
+      "path": ".vscode/settings.json",
+      "sha256": "069a81b6a81eacd71bcdd6e45869fd2c1788eb063a4a424acda94bd4e38ba70e"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "0bf4fc555ed4f07efa2879fe935ec760a313efabddc6f806860d963df86e59bf"
+    },
+    {
+      "path": "docs/dev-ledger.md",
+      "sha256": "372dd9dac9727af72026880b0a939970d2861802c3500f612426e8f66ea678e1"
+    },
+    {
+      "path": "docs/developer/build.md",
+      "sha256": "f4dde0069cf0135a123f56f59913a45b4deb501ee664ce28f1e6c547c2049e32"
+    },
+    {
+      "path": "docs/developer/deployment.md",
+      "sha256": "ab28c2f1af912a94724bafff8911d5c6849edf676e31d8c7bd51c64fb5143c9b"
+    },
+    {
+      "path": "docs/developer/engineering-geometry.md",
+      "sha256": "e570a44122d613eb9cb04a389749bb7af73e96fe66678ee6a6b8926335b3d9fa"
+    },
+    {
+      "path": "docs/developer/handoff.md",
+      "sha256": "2d0c8039de8be1612d872f614ee37da68640b3cc29acf0015da29797204f5b3f"
+    },
+    {
+      "path": "docs/developer/project-gravity.md",
+      "sha256": "5fea834246bebeb84361c067450e2c2c396b9944f7e1e35e04b9f7302ae2711a"
+    },
+    {
+      "path": "docs/developer/testing.md",
+      "sha256": "62a2102cda84e50e5afbba85b4ed4adea72bc1c95ce365c02182c5d85b824410"
+    },
+    {
+      "path": "docs/developer/versioning.md",
+      "sha256": "9f3d90eb129bbaf84c49e90667e2c02c23f9c3d7807e8191d07597a960f21d4c"
+    },
+    {
+      "path": "docs/developer/workflow.md",
+      "sha256": "b6a94ee1c282e46d6c71c6f052ed3589dd4766c6667160f10e2de3c24da2028f"
+    },
+    {
+      "path": "docs/manual-qa.md",
+      "sha256": "63254154e3d2e41a11d2b6ee8f76383af5a6c90bd51d48b1a2d046f2813f13b0"
+    },
+    {
+      "path": "docs/planning/To-do.md",
+      "sha256": "f442d36c0e3cf92fecd863b8fd98c9eb96b7fe7a74a377288b027579c64ae917"
+    },
+    {
+      "path": "docs/PROJECT_FOUNDATION.md",
+      "sha256": "81e99f9d882f1272448c6d31f7cde7e82e606376bab5edfbf03b96eefef33de0"
+    },
+    {
+      "path": "docs/user/UserGuide.md",
+      "sha256": "36c239656710ef2ae8c115f86d26969442eea823794ec06648b49e3bca923c4f"
+    },
+    {
+      "path": "package.json",
+      "sha256": "a34615ef53ca1b7d26faf3ee907fd6c4c960c0d638d40a0cfaa81caa844bb594"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8d744577d281a00f5983ddf6b37347c196e9cb20d0003400a29e61ad6baddaa6"
+    },
+    {
+      "path": "tools/project-mgmt/commit-release.js",
+      "sha256": "fb2c92b49c1dd89e4fa17e0a7778945f1d3ad808bf5eb70134948af8b6a61f3e"
+    },
+    {
+      "path": "tools/project-mgmt/foundation.json",
+      "sha256": "d91d8d3f38584e66cc1437e12fbdaff6929518e84fd899c85a7f738517595110"
+    },
+    {
+      "path": "tools/project-mgmt/handoff.js",
+      "sha256": "3817b906d5a447fbab5c9fedabc3eaf6bfc93de9f14f5f7af5fd66267cdd9977"
+    },
+    {
+      "path": "tools/project-mgmt/ledger.js",
+      "sha256": "4fa67ef77551999ea655332ebd80f6388b7c66335620b624cb8bee311402200e"
+    },
+    {
+      "path": "tools/project-mgmt/README.md",
+      "sha256": "b832d51484ccc43cf53538c3d74bbb88e1bb5e54a929922f616dfcf013202d0f"
+    },
+    {
+      "path": "tools/project-mgmt/stack-command.js",
+      "sha256": "c68c361593309debb7e50d6d35b863d76c7c9354abbf5ed8a0d13d9fc4a1a337"
+    },
+    {
+      "path": "tools/project-mgmt/todo.js",
+      "sha256": "74203694be9c6844d206d7ac7eef4200f1015383efc8ade209feb8e568046ae7"
+    },
+    {
+      "path": "tools/project-mgmt/version-bump.js",
+      "sha256": "888c79ef3cc21be03dd027c626caac62ad6a8b9479cb4cfa52be7fd4e8ffa999"
+    },
+    {
+      "path": "tools/project-mgmt/version-show.js",
+      "sha256": "4cde319f543ce13d7c8023877b78f6783154c7f13e25ff209034543e5f51207d"
+    },
+    {
+      "path": "tools/project-mgmt/version-sync.js",
+      "sha256": "9c1848f19de712b9d1b87e0c47b2eae8d994bad2e2fa556400eb83683994b288"
+    },
+    {
+      "path": "VERSION",
+      "sha256": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67"
+    }
+  ],
+  "integrityScope": "Creation-time seed hashes; excludes this manifest, local secrets and later edits."
+}
