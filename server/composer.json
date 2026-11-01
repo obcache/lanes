@@ -1,0 +1,22 @@
+{
+  "name": "lanes/api",
+  "description": "LANES profile and community leaderboard API",
+  "type": "project",
+  "version": "0.1.0",
+  "require": {
+    "php": "^8.2",
+    "ext-pdo": "*",
+    "ext-fileinfo": "*",
+    "ext-curl": "*",
+    "ext-gd": "*",
+    "ext-mbstring": "*",
+    "jumbojett/openid-connect-php": "^1.0"
+  },
+  "config": {
+    "sort-packages": true,
+    "audit": {
+      "block-insecure": true
+    }
+  },
+  "license": "proprietary"
+}

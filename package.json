@@ -3,11 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "description": "highly customizable lane-based rhythm game",
+  "main": "build/electron/main.cjs",
   "scripts": {
-    "build": "node tools/project-mgmt/stack-command.js build",
-    "test": "node tools/project-mgmt/stack-command.js test",
-    "package": "node tools/project-mgmt/stack-command.js package",
-    "deploy:check": "node tools/project-mgmt/stack-command.js deploy:check",
+    "dev": "vite --host 127.0.0.1",
+    "desktop": "npm run build && node tools/build/launch.cjs",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.electron.json --noEmit",
+    "build": "npm run typecheck && vite build && node tools/build/build.cjs",
+    "test": "vitest run && node --test tests/version.test.cjs && php -d date.timezone=America/Chicago server/tests/domain.php",
+    "test:smoke": "node tests/smoke.cjs",
+    "test:api": "php -d date.timezone=America/Chicago -d extension=pdo_sqlite -d extension=curl -d extension=gd server/tests/integration.php",
+    "package": "npm run build && node tools/build/package.cjs",
+    "package:installer": "node tools/build/installer.cjs",
+    "deploy:check": "node tools/build/check.cjs",
+    "api:dev": "php -d date.timezone=America/Chicago -d extension=pdo_mysql -d extension=curl -d extension=openssl -d extension=gd -d extension=mbstring -d extension=fileinfo -S 127.0.0.1:8080 -t dist/server/public server/router-dist.php",
+    "api:dependencies": "node tools/build/composer.cjs",
     "todo": "node tools/project-mgmt/todo.js list",
     "todo:add": "node tools/project-mgmt/todo.js add",
     "ledger:list": "node tools/project-mgmt/ledger.js list",
@@ -20,6 +29,40 @@
     "version:bump:major": "node tools/project-mgmt/version-bump.js major",
     "commit": "node tools/project-mgmt/commit-release.js patch",
     "commit:minor": "node tools/project-mgmt/commit-release.js minor",
-    "commit:major": "node tools/project-mgmt/commit-release.js major"
-  }
+    "commit:major": "node tools/project-mgmt/commit-release.js major",
+    "test:desktop": "node tests/desktop.cjs",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"electron/**/*.ts\" \"tests/*.{ts,cjs}\" \"tools/build/**/*.cjs\" \"tools/project-mgmt/version*.js\" package.json tsconfig*.json vite.config.mts",
+    "scaffold:check": "node tools/build/scaffold-check.cjs",
+    "test:midi": "node tests/midi-recovery.cjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "fft.js": "^4.0.4",
+    "lucide-react": "^0.468.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "@prettier/plugin-php": "^0.26.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.0.0",
+    "electron": "^45.2.1",
+    "esbuild": "^0.28.2",
+    "playwright": "^1.58.0",
+    "prettier": "^3.9.10",
+    "sharp": "^0.35.5",
+    "typescript": "^5.9.0",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  },
+  "overrides": {
+    "minimatch": "^11.0.3",
+    "glob": "^14.0.3"
+  },
+  "license": "UNLICENSED"
 }

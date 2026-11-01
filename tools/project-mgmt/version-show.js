@@ -1,47 +1,21 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
-
+const fs = require("node:fs");
+const path = require("node:path");
+const { targets, read } = require("./version-targets");
 const root = process.cwd();
-
-function readJsonVersion(filePath) {
-  try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8')).version || null;
-  } catch {
-    return null;
+const expected = JSON.parse(fs.readFileSync("package.json", "utf8")).version;
+let mismatch = false;
+for (const [file, kind] of targets) {
+  if (!fs.existsSync(path.join(root, file))) continue;
+  const version = read(root, file, kind);
+  console.log(`${file}: ${version}`);
+  if (version !== expected) mismatch = true;
+  if (kind === "lock") {
+    const lock = JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
+    if (lock.packages?.[""]?.version !== expected) mismatch = true;
   }
 }
-
-function readTextVersion(filePath) {
-  try {
-    return fs.readFileSync(filePath, 'utf8').trim() || null;
-  } catch {
-    return null;
-  }
-}
-
-function walk(dir, callback) {
-  if (!fs.existsSync(dir)) return;
-  for (const item of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (item.isSymbolicLink() || ['.git', 'node_modules', 'vendor', 'third_party', '.venv', 'venv', 'dist', 'build', 'release'].includes(item.name)) continue;
-    const full = path.join(dir, item.name);
-    if (item.isDirectory()) walk(full, callback);
-    else callback(full);
-  }
-}
-
-const rows = [];
-walk(root, filePath => {
-  const rel = path.relative(root, filePath).replace(/\\/g, '/');
-  const base = path.basename(filePath).toLowerCase();
-  let version = null;
-  if (base === 'package.json') version = readJsonVersion(filePath);
-  else if (base === 'version' || base === 'version.txt') version = readTextVersion(filePath);
-  if (version) rows.push({ rel, version });
-});
-
-if (!rows.length) {
-  console.log('No version files found.');
-} else {
-  rows.forEach(row => console.log(`${row.rel}: ${row.version}`));
+if (mismatch) {
+  console.error("Version mismatch. Run npm run version:sync.");
+  process.exit(1);
 }

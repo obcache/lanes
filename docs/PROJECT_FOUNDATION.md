@@ -65,6 +65,30 @@ are foundation preferences; feature-specific behavior comes from the user reques
 
 MIDI support will be needed
 
+## Implemented Product and Ownership (2026-10-31)
+
+LANES is a five-lane rhythm game with local audio import, four generated difficulty
+maps (3/4/5/5 lanes), ordered playlists, keyboard/MIDI input, metronome calibration,
+and profile artwork. The primary surface is the music library with a playable
+lane preview; settings/profile workflows use inline sections and forms.
+
+The shared MySQL/MariaDB storage selection applies to organization identities,
+uploaded-profile asset references, submitted chart metadata, runs and statistics.
+Library membership, playlists, calibration, MIDI/keyboard settings, workspace state,
+and local media remain on the user's computer in versioned JSON and a managed media
+folder. This local ownership is an explicit user requirement, not a database fallback.
+
+The service is PHP 8.2+ on Apache with MySQL/MariaDB, using an established OIDC library
+and group-derived roles. The desktop uses a sandboxed preload and validated IPC;
+tokens stay in main-process memory. The browser profile portal is built from the
+same React UI and uses localStorage/IndexedDB for browser-local preview data.
+
+Build outputs are dist/renderer, dist/server (public/ is its only document root),
+dist/LANES-win32-x64 and dist/installer. Local JSON, private server configuration,
+uploaded image storage and credentials live outside installed/shipped artifacts.
+No hosting, real IdP, production database or signing identity has been configured.
+Community leaderboard consistency is enforced, but scores remain unverified.
+
 ## Implementation Handoff
 
 1. Read AGENTS.md and the startup documents before designing application behavior.

@@ -3,9 +3,13 @@ node_modules/
 .env.*
 !.env.example
 .tmp/
-dist/
-build/
-release/
+/dist/
+server/vendor/
+server/config.local.php
+server/storage/
+test-results/
+/build/
+/release/
 *.log
 tools/project-mgmt/.codex-bundle/
 tools/project-mgmt/chat-handoffs/

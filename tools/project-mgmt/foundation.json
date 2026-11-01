@@ -25,5 +25,12 @@
   "interchange": "json",
   "connectivity": "online",
   "testing": "standard",
-  "notes": "MIDI support will be needed"
+  "notes": "MIDI support will be needed",
+  "implementation": {
+    "primarySurface": "Music library, track inspector, and playable five-lane highway",
+    "serverStack": "PHP / Apache / MySQL-MariaDB",
+    "localOwnership": "Versioned JSON for filesystem/device state; managed local media",
+    "sharedOwnership": "OIDC profiles, image references, chart registrations, submitted runs/statistics",
+    "status": "Implemented locally; external service configuration required"
+  }
 }

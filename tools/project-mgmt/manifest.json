@@ -38,7 +38,7 @@
   },
   "foundationPath": "docs/PROJECT_FOUNDATION.md",
   "artifactBoundary": "dist/",
-  "migrationPolicy": "Explicit, versioned and validated when persistence is implemented.",
+  "migrationPolicy": "MySQL migration 001 is applied explicitly by an operator; production backup/restore must be verified separately from test fixtures.",
   "layout": {
     "docs": [
       "AGENTS.md",
@@ -56,7 +56,10 @@
       "docs/PROJECT_FOUNDATION.md",
       "docs/user/UserGuide.md",
       "README.md",
-      "tools/project-mgmt/README.md"
+      "tools/project-mgmt/README.md",
+      "docs/developer/architecture.md",
+      "docs/design/art-direction.md",
+      "docs/design/verification.md"
     ],
     "tools": [
       "tools/project-mgmt/commit-release.js",
@@ -68,7 +71,8 @@
       "tools/project-mgmt/todo.js",
       "tools/project-mgmt/version-bump.js",
       "tools/project-mgmt/version-show.js",
-      "tools/project-mgmt/version-sync.js"
+      "tools/project-mgmt/version-sync.js",
+      "tools/project-mgmt/version-targets.js"
     ]
   },
   "files": [
@@ -197,5 +201,98 @@
       "sha256": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67"
     }
   ],
-  "integrityScope": "Creation-time seed hashes; excludes this manifest, local secrets and later edits."
+  "integrityScope": "Creation-time seed hashes; excludes this manifest, local secrets and later edits.",
+  "runtimeAssumptions": {
+    "desktop": "Windows x64 / Electron; isolated renderer and local JSON/media under userData",
+    "server": "PHP 8.2+, Apache, MySQL 8+ or MariaDB 10.6+; public/ only document root",
+    "authentication": "Organization OIDC; ID-token groups assign player/admin; no password bootstrap",
+    "configuration": "LANES_CONFIG points outside artifact/document root; no credentials shipped"
+  },
+  "deployShape": [
+    "dist/renderer/",
+    "dist/server/public/",
+    "dist/server/src/",
+    "dist/server/vendor/",
+    "dist/server/database/",
+    "dist/LANES-win32-x64/",
+    "dist/installer/"
+  ],
+  "implementation": {
+    "implementedAt": "2026-10-31",
+    "sourceFiles": [
+      "src/App.tsx",
+      "src/shared/model.ts",
+      "src/core/analysis.ts",
+      "src/core/analysis.worker.ts",
+      "src/core/storage.ts",
+      "src/core/judgement.ts",
+      "src/core/midi.ts",
+      "electron/main.ts",
+      "electron/preload.ts",
+      "electron/store.ts",
+      "server/public/api/index.php",
+      "server/src/auth.php",
+      "server/src/domain.php",
+      "server/src/bootstrap.php",
+      "server/database/migrations/001_initial.sql",
+      "server/database/rollback/001_initial.sql",
+      "server/composer.json",
+      "server/composer.lock",
+      "installer/lanes.iss",
+      "tools/build/build.cjs",
+      "tools/build/package.cjs",
+      "tools/build/installer.cjs",
+      "tools/build/check.cjs",
+      "tools/build/scaffold-check.cjs",
+      "public/icon.svg",
+      "public/art/aurora.webp",
+      "tests/core.test.ts",
+      "tests/store.test.ts",
+      "tests/smoke.cjs",
+      "tests/desktop.cjs",
+      "tests/version.test.cjs",
+      "electron/midi-permission.ts",
+      "src/components/MidiAccess.tsx",
+      "tests/midi-permission.test.ts",
+      "tests/midi-recovery.cjs"
+    ],
+    "commands": [
+      "dev",
+      "desktop",
+      "typecheck",
+      "build",
+      "test",
+      "test:api",
+      "test:smoke",
+      "test:desktop",
+      "package",
+      "package:installer",
+      "api:dependencies",
+      "api:dev",
+      "deploy:check",
+      "scaffold:check",
+      "handoff",
+      "test:midi"
+    ],
+    "versionTargets": [
+      "package.json",
+      "package-lock.json",
+      "VERSION",
+      "server/composer.json",
+      "installer/lanes.iss"
+    ],
+    "localJson": [
+      "settings",
+      "library",
+      "playlists",
+      "profile",
+      "runs"
+    ],
+    "externalAcceptance": [
+      "Real organization OIDC",
+      "Production MySQL/Apache deployment and restore",
+      "Physical MIDI calibration",
+      "Cross-genre chart quality"
+    ]
+  }
 }
